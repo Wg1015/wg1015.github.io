@@ -4,13 +4,17 @@
   <meta charset="utf-8">
   
   
-  <title>Hexo</title>
+  <title>关于lambda表达式 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/index.html">
+  <meta name="description" content="一切开始于函数指针使用函数指针的一个重大意义在于回调。 12345678910111213141516typedef void (*func)();  &#x2F;&#x2F;定义函数指针变量void print_char()&#123;    printf(&quot;I will be printed twice\n&quot;);&#125;void repeattwice(func p)&#123;    p">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于lambda表达式">
+<meta property="og:url" content="http://example.com/2023/11/07/%E5%85%B3%E4%BA%8Elambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一切开始于函数指针使用函数指针的一个重大意义在于回调。 12345678910111213141516typedef void (*func)();  &#x2F;&#x2F;定义函数指针变量void print_char()&#123;    printf(&quot;I will be printed twice\n&quot;);&#125;void repeattwice(func p)&#123;    p">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-11-07T03:48:31.000Z">
+<meta property="article:modified_time" content="2023-11-07T03:49:19.431Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -71,9 +75,7 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-关于lambda表达式" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-关于lambda表达式" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2023/11/07/%E5%85%B3%E4%BA%8Elambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="article-date">
   <time class="dt-published" datetime="2023-11-07T03:48:31.000Z" itemprop="datePublished">2023-11-07</time>
@@ -90,8 +92,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/11/07/%E5%85%B3%E4%BA%8Elambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/">关于lambda表达式</a>
+    <h1 class="p-name article-title" itemprop="headline name">
+      关于lambda表达式
     </h1>
   
 
@@ -200,85 +202,19 @@ print num 3 and 4</br>
     </footer>
   </div>
   
-</article>
-
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-C-构造函数-一" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/11/05/C-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0-%E4%B8%80/" class="article-date">
-  <time class="dt-published" datetime="2023-11-05T08:49:47.000Z" itemprop="datePublished">2023-11-05</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/c/">c++</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/11/05/C-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0-%E4%B8%80/">C++构造函数(一)</a>
-    </h1>
+    <a href="/2023/11/05/C-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0-%E4%B8%80/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">C++构造函数(一)</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>现代C++满足RAII（Resource Acquistion Is Initialization，资源获取即初始化）思想，所以在获取资源时，就要进行初始化。这个思想就体现在C++的构造函数上。</p>
-<p>（但是有些情况不满足这种情况可能比较好。比如各种容器中用于分配内存的空间的分配器（allocator）。每次初始化对象时要进行分配，而很多时候这种分配操作会让系统从用户态转换为系统态，这会造成额外的开销。频繁的转换系统状态有时代价比较大。所以这种会有”一次分配，多次使用“的策略。）</p>
-<h1 id="构造函数——初始化对象"><a href="#构造函数——初始化对象" class="headerlink" title="构造函数——初始化对象"></a>构造函数——初始化对象</h1><p>构造函数一个重要的作用就是初始化。</p>
-<p>初始化有两种方案，一种是通过赋值初始化，另一种是通过初始化表达式初始化。</p>
-<ul>
-<li>列表初始化</li>
-<li>赋值初始化</li>
-</ul>
-<p>一般都会使用列表初始化。<br>赋值初始化有个致命的缺点：会重复进行对象的构造。初始化的时候构造一遍，赋值的时候再构造一遍。	</p>
-<h1 id="C-中构造对象的几种方式"><a href="#C-中构造对象的几种方式" class="headerlink" title="C++中构造对象的几种方式"></a>C++中构造对象的几种方式</h1><p>可以大体分为两种:隐式构造，显式构造。	</p>
-<ul>
-<li>object a &#x3D; b;		 	（隐式构造)		&#x2F;&#x2F;我们并没有编写&#x3D;赋值这个行为，所以式隐式构造</li>
-<li>object a &#x3D; {b};   	（隐式构造） 	 &#x2F;&#x2F;同上</li>
-<li>object a(b);	   	 	（显式构造）</li>
-<li>object a{b};			（显式构造）</li>
-</ul>
-<p>个人认为隐式构造的方式属于兼容C语言遗留下来的。但是隐式构造会造成类型混淆的问题，降低代码可读性。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Pig</span>&#123;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="built_in">Pig</span>(<span class="type">int</span> age):<span class="built_in">age</span>(age)&#123;</span><br><span class="line">		&#125;;</span><br><span class="line">	<span class="keyword">private</span>:</span><br><span class="line">		<span class="type">int</span> age;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">a_pig</span><span class="params">(Pig p)</span></span>&#123;</span><br><span class="line">	<span class="comment">//nothing</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	Pig p = <span class="number">80</span>; <span class="comment">// 可以这么写</span></span><br><span class="line">	<span class="built_in">a_pig</span>(<span class="number">80</span>);	<span class="comment">//也可以这么写</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>可以在构造函数中使用explicit关键字来表示只能使用显式的构造函数</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Pig</span>&#123;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">explicit</span> <span class="title">Pig</span><span class="params">(<span class="type">int</span> age)</span>:age(age)&#123;</span></span><br><span class="line">		&#125;;</span><br><span class="line">	<span class="keyword">private</span>:</span><br><span class="line">		<span class="type">int</span> age;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">a_pig</span><span class="params">(Pig p)</span></span>&#123;</span><br><span class="line">	<span class="comment">//nothing</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	Pig p = <span class="number">80</span>; 	<span class="comment">//编译报错</span></span><br><span class="line">	<span class="built_in">a_pig</span>(<span class="number">80</span>);		 <span class="comment">//编译报错</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<p>然后可以看到可以使用（）和{}两种方式进行初始化，但是{}不会进行强制转换。所以使用{}会更安全。</p>
-<h1 id="无参构造函数"><a href="#无参构造函数" class="headerlink" title="无参构造函数"></a>无参构造函数</h1><p>当一个类没有定义任何构造函数，且所有成员都有无参构造函数时，编译器会自动生成一个无参构造函数 Pig()，他会调用每个成员的无参构造函数。但是请注意，这些类型不会被初始化为 0：</p>
-<ul>
-<li>int, float, double 等基础类型</li>
-<li>void *, Object * 等指针类型</li>
-<li>完全由这些类型组成的类</li>
-</ul>
-<p>这些类型被称为 POD（plain-old-data）。编译器认为它们是老的原始的类型（c语言的东西），这样它就不会去进行初始化0，而是给一个随机的内存位置。POD 的存在是出于兼容性和性能的考虑。那么怎么解决POD问题呢？</p>
-<p>可以手动指定初始化 weight 为0。通过 {} 语法指定的初始化值，会在编译器自动生成的构造函数里执行。这样就会去调用有参构造函数了。而且通过 {} 语法指定的初始化值，不仅会在编译器自动生成的构造函数里执行，也会用户自定义构造函数里执行。也就是说在pig构造函数中即使没有给weight初始化，只要成员使用了weight{0}，就已经初始化成功了。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/11/05/C-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0-%E4%B8%80/" data-id="clonslhga0000qexxdaf50w0y" data-title="C++构造函数(一)" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
   
 </article>
-
-
-
-  
 
 
 </section>
